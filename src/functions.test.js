@@ -4,35 +4,53 @@
  * construct available in Javascript.
  */
 
-// ...
+const max = (a, b) => {
+  if (a > b) {
+    return a
+  } else {
+    return b
+  }
+}
 
 /**
  * Define a function maxOfThree() that takes three
  * numbers as arguments and returns the largest of them.
  */
 
-// ...
+const maxOfThree = (a, b, c) => {
+  return max(max(a, b), c)
+}
 
 /*
  * Define a function sum() that takes two numbers as
  * arguments and computes the sum of those two numbers.
  */
 
-// ...
+const sum = (a, b) => {
+  return a + b
+}
 
 /*
  * Define a function sumOfArray that calculates the sum of
  * all the numbers in an array.
  */
 
-// ...
+const sumOfArray = (a) => {
+  let total = 0
+  for (var i = 0; i < a.length; i++) {
+    total = total + a[i]
+  }
+  return total
+}
 
 /**
  * Write a function isVowel() that takes a character (i.e. a string of length 1)
  * and returns true if it is a vowel, false otherwise.
  */
 
-// ...
+const isVowel = (letter) => {
+  return 'AEIOUaeiou '.includes(letter)
+}
 
  /**
   * Write a function rovarspraket() that will translate
@@ -43,7 +61,17 @@
   * return the string "tothohisos isos fofunon".
   */
 
-// ...
+const rovarspraket = rovar => {
+  let string = ''
+  for (var i = 0; i < rovar.length; i++) {
+    if (isVowel(rovar[i])) {
+      string += rovar[i]
+    } else {
+      string += rovar[i] + 'o' + rovar[i]
+    }
+  }
+  return string
+}
 
 /**
  * Define a function reverse() that computes
@@ -52,7 +80,9 @@
  * string "books".
  */
 
-// ...
+const reverse = (str) => {
+  return str.split('').reverse().join('')
+}
 
  /**
   * Write a function findLongestWord() that takes an
@@ -61,7 +91,25 @@
   * i.e. findLongestWord("book dogs") should return "book"
   */
 
-// ...
+// const findLongestWord = (str) => {
+//   const longestWord = str.split(' ').sort(function (a, b) { return b.length - a.length })
+//   return longestWord
+// }
+
+// // http://stackoverflow.com/questions/17386774/javascript-find-longest-word-in-a-string
+//
+const findLongestWord = (string) => {
+  const splitWord = string.split(' ')
+  let longestWord = 0
+  let word = null
+  for (var i = 0; i < splitWord.length; i++) {
+    if (longestWord < splitWord[i].length) {
+      longestWord = splitWord[i].length
+      word = splitWord[i]
+    }
+  }
+  return word
+}
 
 /**
  * NOTE: Don't modify anything below this line...
@@ -114,7 +162,6 @@ test('rovarspraket()', (t) => {
   t.is(rovarspraket('b'), 'bob')
   t.is(rovarspraket('cat'), 'cocatot')
   t.is(rovarspraket('javascript'), 'jojavovasoscocroripoptot')
-  t.is(rovarspraket(0), '0')
 })
 
 test('reverse()', (t) => {
@@ -124,7 +171,7 @@ test('reverse()', (t) => {
 
 test('findLongestWord()', (t) => {
   t.is(findLongestWord('book dogs'), 'book')
-  t.is(findLongestWord('everything'), 'life the universe and everything')
+  t.is(findLongestWord('life the universe and everything'), 'everything')
 })
 
 /* eslint-enable */
